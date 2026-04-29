@@ -1,0 +1,22 @@
+import math
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l , r = 1, max(piles)
+
+        res = piles
+        # We are checking speed with binary search not array 
+        while l <= r:
+            mid = (l + r) // 2
+            hours = 0
+
+            for i in piles:
+                hours += math.ceil(i / mid)
+
+            if hours <= h:
+                res = mid
+                r = mid - 1
+            else: 
+                l = mid + 1
+            
+
+        return res
